@@ -1,17 +1,18 @@
 @extends("layouts.try")
 @section("hom-body")
-<h2 class="card-title m-4">Add Publisher</h2>
+<h2 class="card-title m-4">Edit Publisher</h2>
 <div class="add_body p-2">
 
-<form class="row g-3 addform p-2 m-2" action="{{ route('publisher.store') }}" method="POST">
+<form class="row g-3 addform p-2 m-2" action="{{route('publisher_update',$publisher->id)}}" method="POST">
+@method('PUT')
     @csrf
     <div class="col-md-4">
-        <label for="validationDefaultUsername" class="form-label">Publisher name</label>
+        <label for="validationDefaultUsername" class="form-label">Publ name</label>
         <div class="input-group">
             <input 
                 type="text" 
                 name="name" 
-                value="{{ old('name') }}"  
+                value="{{ old('name',$publisher->name) }}"  
                 class="form-control @error('name') is-invalid @enderror" 
                 id="validationDefaultUsername"
                 aria-describedby="inputGroupPrepend2" 
@@ -28,7 +29,7 @@
         <input 
             type="text" 
             name="address" 
-            value="{{ old('address') }}"  
+            value="{{ old('address',$publisher->address) }}"  
             class="form-control @error('address') is-invalid @enderror" 
             id="validationDefault01" 
             required
@@ -39,7 +40,7 @@
     </div>
 
     <div class="col-12">
-        <button class="btn btn-primary" type="submit">Add Publisher</button>
+        <button class="btn btn-primary" type="submit">Update Publisher</button>
     </div>
 </form>
 
