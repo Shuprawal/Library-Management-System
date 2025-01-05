@@ -1,66 +1,197 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Library Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Introduction
 
-## About Laravel
+This Laravel project assignment, "Building a Comprehensive Library Management System," is designed to demonstrate the core features of Laravel, including routing, controllers, models, form requests, views, migrations, seeders, and more. The project leverages Laravel Jetstream as the starter kit, using Livewire as the Jetstream stack within this PHP framework. The system allows users to manage books, authors, publishers, and borrowers efficiently. It supports two distinct user roles: admin user and general user, each with specific functionalities and permissions assigned to their roles.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aims and objective
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The main aim of this project is to create a library management system where user can manage books, authors, publishers and borrowers with distinct users, that are admin and a user.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Some objectives of this project are:
 
-## Learning Laravel
+- To perform CRUD operations in books, authors, publishers and borrowers.
+- To properly implement the database relations between the tables.
+- To implement search, pagination and filter facility.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Design
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+MVC Architecture Pattern
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Mode-View-Controller (MVC) is a software architecture pattern that separates the development of project in main three components like: Model, View and Controller
 
-## Laravel Sponsors
+Model: In development process the component model component is responsible for managing rules/logic and data.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+View: The component view is responsible to display the (UI) user interfaces to the user.
 
-### Premium Partners
+Controller: The controller component acts as a bridge between model and view.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Database
 
-## Contributing
+Skeleton table
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Authors
 
-## Security Vulnerabilities
+|Column Name|Datatype|Attributes|
+| :- | :- | :- |
+|id|bigint(20)|PRIMARY KEY|
+|name|varchar(255)|NOT NULL|
+|created\_at|timestamp||
+|updated\_at|timestamp||
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Books
 
-## License
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|name|varchar(255)|NOT NULL|
+|isbn|varchar(255)|NOT NULL|
+|description|text||
+|available\_copies|int(11)||
+|publisherID|bigint(20)|FOREIGN KEY|
+|image|varchar(255)||
+|created\_at|timestamp||
+|updated\_at|timestamp||
+|published\_date|date||
+|total\_pages|int(10)||
+|language|varchar(50)||
+|featured|enum('yes','no')|NOT NULL |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+book\_authors
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|bookID|varchar(255)|NOT NULL|
+|authorID|varchar(255)|NOT NULL|
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+
+
+
+
+book\_genres
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|book\_id|bigint(20)|FOREIGN KEY|
+|genre\_id|bigint(20)|FOREIGN KEY|
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+Genres
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|name|varchar(255)|NOT NULL|
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+
+Publishers
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|name|varchar(255)|NOT NULL|
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+
+Borrow
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|Primary KEY|
+|user\_id|bigint(20)|FOREIGN KEY|
+|book\_id|bigint(20)|FOREIGN KEY|
+|request|enum||
+|status|enum||
+|borrow\_date|date||
+|return\_date|date||
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+Ratings
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|UNSIGNED, NOT NULL|
+|user\_id|bigint(20)||
+|book\_id|bigint(20)||
+|rating|int(11)||
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+
+Reviews
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|Primary KEY|
+|user\_id|bigint(20)|FOREIGN KEY|
+|book\_id|bigint(20)|FOREIGN KEY|
+|review|text||
+|created\_at|timestamp||
+|updated\_at|timestamp||
+
+Wishlists
+
+|**Column Name**|**Data Type**|**Attributes**|
+| :-: | :-: | :-: |
+|id|bigint(20)|PRIMARY KEY|
+|user\_id|bigint(20)|FOREIGN KEY|
+|book\_id|bigint(20)|FOREIGN KEY|
+|created\_at|timestamp|NULL DEFAULT NULL|
+|updated\_at|timestamp|NULL DEFAULT NULL|
+
+
+
+Relationship:
+
+Authors to Book\_authors : One to Many (1:N)
+
+`	`One author can be associated with multiple books though book\_author table.
+
+Books to Book\_authors : One to Many (1:N)
+
+`	`One book can be associated with multiple authors though book\_author table.
+
+Books to book\_genre : One to many(1:N)
+
+`	`One book can be associated with multiple genres though book\_ genre table.
+
+Genres to book\_genre : One to many(1:N)
+
+`	`One genre can be associated with multiple books though book\_ genre table.
+
+Publishers to Book: One to many(1:N)
+
+`	`One publisher can publish multiple books
+
+Users to Borrow: One to many(1:N)
+
+`	`User can borrow many books through borrow table
+
+Users to review: One to many(1:N)
+
+`	`One user can have multiple review through review table.
+
+User to Wishlist: One to many(1:N)
+
+`	`One user can add multiple books in his Wishlist.
+
+Books to review: One to many(1:N)
+
+`	`One book can have multiple reviews done by multiple users
+
+Books to Wishlist: One to many(1:N)
+
+`	`One book can be added in wishlist of multiple users
+
+;
