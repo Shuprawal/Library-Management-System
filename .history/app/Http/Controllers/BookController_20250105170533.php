@@ -91,7 +91,7 @@ class BookController extends Controller
         }
 
 
-         try {
+        try {
             DB::beginTransaction();
             $pathOfPhoto = null;
             if ($request->hasFile('image')) {
@@ -118,7 +118,7 @@ class BookController extends Controller
 
 
 
-            return redirect()->route('allbooklist')->with('success', 'Book added successfully!');
+            return redirect()->route('books.home')->with('success', 'Book added successfully!');
 
         } catch (\Exception $e) {
             Log::error('Error adding book: ' . $e->getMessage());

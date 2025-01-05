@@ -91,7 +91,7 @@ class BookController extends Controller
         }
 
 
-         try {
+        // try {
             DB::beginTransaction();
             $pathOfPhoto = null;
             if ($request->hasFile('image')) {
@@ -120,10 +120,10 @@ class BookController extends Controller
 
             return redirect()->route('allbooklist')->with('success', 'Book added successfully!');
 
-        } catch (\Exception $e) {
-            Log::error('Error adding book: ' . $e->getMessage());
-            return redirect()->back()->withInput()->with('error', 'An unexpected error occurred while saving the book.');
-        }
+        // } catch (\Exception $e) {
+        //     Log::error('Error adding book: ' . $e->getMessage());
+        //     return redirect()->back()->withInput()->with('error', 'An unexpected error occurred while saving the book.');
+        // }
     }
 
     /**

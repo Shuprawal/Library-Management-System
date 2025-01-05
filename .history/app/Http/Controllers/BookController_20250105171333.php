@@ -91,7 +91,7 @@ class BookController extends Controller
         }
 
 
-         try {
+        // try {
             DB::beginTransaction();
             $pathOfPhoto = null;
             if ($request->hasFile('image')) {
