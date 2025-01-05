@@ -4,7 +4,9 @@
 
         <x-validation-errors class="mb-4" />
 
-        
+        <x-slot name="logo">
+        <a class="navbar-brand" href="#" style="margin-inline: 35px;">Buddha Books</a>
+        </x-slot>
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ $value }}
@@ -12,9 +14,6 @@
         @endsession
 
         <form method="POST" action="{{ route('login') }}">
-            <x-slot name="logo">
-                <a class="navbar-brand" href="#" style="margin-inline: 35px;">Buddha Books</a>
-            </x-slot>
             @csrf
 
             <div>
@@ -33,31 +32,17 @@
                     <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-            
-            
-            
 
             <div class="flex items-center justify-end mt-4">
-            
-
                 @if (Route::has('password.request'))
-
-                    
-
-
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                <a class="underline text-sm mx-3 text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                        {{ __('Go to Register? ') }}
-                    </a>
-
                 <x-button class="ms-4">
                     {{ __('Log in') }}
                 </x-button>
-                
             </div>
         </form>
     </x-authentication-card>

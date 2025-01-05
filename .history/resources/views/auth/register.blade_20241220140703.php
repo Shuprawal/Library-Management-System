@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-        <a class="navbar-brand" href="#" style="margin-inline: 35px;">Buddha Books</a>
+            <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -58,18 +58,3 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
-
-<style>
-        .navbar-brand {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #2c3e50;
-        transition: color 0.3s ease;
-        margin-right: 2rem;
-    }
-
-    .navbar-brand:hover {
-        color: #3498db;
-    }
-
-</style>
